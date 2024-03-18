@@ -2,7 +2,6 @@ import React, { useCallback, useRef, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Header from './header';
 import Searchbar from './searchbar';
-import SearchView from './searchView';
 
 const Wrapper = ({
     backgroundColor,
@@ -21,12 +20,10 @@ const Wrapper = ({
     onChangeText,
     headerHeight, // Header height without searchbar
     searchBarIcon,
-    searchScreen,
     children
 }) => {
     const header = useRef();
     const searchbar = useRef();
-    const searchView = useRef();
     const [dimensions, setDimensions] = useState({
         fullHeaderHeight: undefined,
         searchbarHeight: undefined
@@ -36,15 +33,13 @@ const Wrapper = ({
         onPressCancel && onPressCancel();
         header.current.close();
         searchbar.current.open();
-        searchView.current.open();
-    }, [header, searchbar,searchView]);
+    }, [header, searchbar]);
 
     const close = useCallback(() => {
         onFocus && onFocus();
         header.current.open();
         searchbar.current.close();
-        searchView.current.close();
-    }, [header, searchbar,searchView])
+    }, [header, searchbar])
 
     const onLayoutFullHeader = useCallback(event => {
         const { fullHeaderHeight } = dimensions;
@@ -89,17 +84,6 @@ const Wrapper = ({
                     searchBarIcon={searchBarIcon}
                 />
             </View>
-            {
-                dimensions.fullHeaderHeight && dimensions.searchbarHeight &&
-                <SearchView 
-                    ref={searchView}
-                    duration={animationDuration} 
-                    searchbarHeight={dimensions.searchbarHeight} 
-                    fullHeaderHeight={dimensions.fullHeaderHeight}
-                >
-                    {searchScreen}
-                </SearchView>
-            }
             {children}
         </View>
     );
