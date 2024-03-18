@@ -19,7 +19,8 @@ const Wrapper = ({
     onFocus,
     onChangeText,
     headerHeight, // Header height without searchbar
-    searchBarIcon,
+    leftBarIcon,
+    rightBarIcon,
     children
 }) => {
     const header = useRef();
@@ -81,7 +82,8 @@ const Wrapper = ({
                     marginRight={cancelTextMarginRight}
                     onLayout={onLayoutSearchBar}
                     onChangeText={onChangeText}
-                    searchBarIcon={searchBarIcon}
+                    leftBarIcon={leftBarIcon}
+                    rightBarIcon={rightBarIcon}
                 />
             </View>
             {children}
