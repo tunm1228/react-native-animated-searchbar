@@ -75,12 +75,13 @@ class Searchbar extends Component {
             searchbarStyle,
             backgroundColor,
             onChangeText,
-            searchBarIcon
+            rightBarIcon,
+            leftBarIcon
         } = this.props;
         return (
             <View onLayout={onLayout} style={[styles.container, { backgroundColor: backgroundColor }]}>
                 <View style={[styles.barWrapper, searchbarStyle]}>
-                    {searchBarIcon}
+                    {leftBarIcon}
                     <TextInput
                         onFocus={this.onFocusInput}
                         style={[styles.textInput]}
@@ -88,6 +89,7 @@ class Searchbar extends Component {
                         placeholderTextColor={placeholderTextColor}
                         onChangeText={onChangeText}
                     />
+                    {rightBarIcon}
                 </View>
                 {
                     textDimensions ?
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     container: {
-        alignSelf: 'stretch',
+        alignSelf: 'center',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
